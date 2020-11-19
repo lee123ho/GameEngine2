@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - ObstacleSP
+  - Enemy
+  - gPoint
   layers:
   - Default
   - TransparentFX

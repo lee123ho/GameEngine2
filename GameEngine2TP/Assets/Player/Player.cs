@@ -4,18 +4,23 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     private NavMeshAgent _agent;
     private GameInputActions _inputActions;
+    public float ammoCount;
 
+    [SerializeField] private Stat _stat;
     [SerializeField] private Camera _cam;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float _speed = 5f;
 
+    public Stat Stat => _stat;
+
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
+        ammoCount = 0f;
     }
 
     private void Update()
@@ -27,5 +32,10 @@ public class Player : MonoBehaviour
         Physics.Raycast(_cam.ScreenPointToRay(Input.mousePosition), out var raycastHit, groundLayer);
         var dir = raycastHit.point - transform.position;
         transform.rotation = Quaternion.LookRotation(new Vector3(dir.x, 0, dir.z));
+    }
+
+    public void Damage(float damageAmount)
+    {
+        _stat.AddHp(-damageAmount);
     }
 }

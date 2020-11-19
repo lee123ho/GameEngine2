@@ -714,6 +714,7 @@ GameObject:
   - component: {fileID: 1289730202934383167}
   - component: {fileID: 1289730202934383166}
   - component: {fileID: 7474124075348453457}
+  - component: {fileID: -7856932666367783646}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -788,6 +789,19 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!65 &-7856932666367783646
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289730202934383160}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 1, z: 6.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1289730203106628029
 GameObject:
   m_ObjectHideFlags: 0
