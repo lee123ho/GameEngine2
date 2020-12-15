@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            _player.ammoCount += 10f;
+            _player.ammoCount += 50f;
             gameObject.SetActive(false);
         }
     }

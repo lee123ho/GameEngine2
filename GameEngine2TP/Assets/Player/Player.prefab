@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8043694652933705613}
   - component: {fileID: 1611183331792883181}
   - component: {fileID: 7413744887392525843}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,7 +342,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7531740751587289227}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GunPoint
   m_TagString: gPoint
   m_Icon: {fileID: 0}
@@ -356,13 +356,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7531740751587289226}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0.5}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7531740752804518036}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &7531740752804518045
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,7 +383,8 @@ GameObject:
   - component: {fileID: 7531740752804518042}
   - component: {fileID: -3006326860818795901}
   - component: {fileID: 4373790761832116898}
-  m_Layer: 0
+  - component: {fileID: 7451227584952849871}
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -767,15 +768,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a64574f8fcd9dae43b48777c98c94249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoCount: 0
   _stat:
     _maxHp: 10
     _shootSpeed: 0
-    _attackRate: 0
-    _attackPower: 0
+    _attackRate: 1
+    _attackPower: 2
   _cam: {fileID: 0}
-  groundLayer:
+  _groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   _speed: 5
 --- !u!114 &-3006326860818795901
 MonoBehaviour:
@@ -834,3 +836,18 @@ CharacterJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &7451227584952849871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7531740752804518045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d630b82a750833b44b8bd726fc64e753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
