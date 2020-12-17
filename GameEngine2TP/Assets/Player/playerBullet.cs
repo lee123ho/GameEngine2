@@ -5,6 +5,7 @@ using UnityEngine;
 public class playerBullet : MonoBehaviour
 {
     private Rigidbody _rigidbody;
+    private TrailRenderer _trailRenderer;
     private Coroutine _bulletLifeTime;
 
     private float _power;
@@ -13,11 +14,13 @@ public class playerBullet : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _trailRenderer = GetComponent<TrailRenderer>();
     }
 
     private void OnEnable()
     {
         _bulletLifeTime = StartCoroutine(BulletLiftTime());
+        _rigidbody.velocity = Vector3.zero;
     }
 
     private void OnDisable()
@@ -26,21 +29,22 @@ public class playerBullet : MonoBehaviour
 
         StopCoroutine(_bulletLifeTime);
         _bulletLifeTime = null;
+        _trailRenderer.Clear();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("exploObj"))
         {
             var damagable = collision.gameObject.GetComponent<IDamageable>();
             damagable.Damage(_power);
-            gameObject.SetActive(false);
         }
+        gameObject.SetActive(false);
     }
 
     private IEnumerator BulletLiftTime()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(5f);
         gameObject.SetActive(false);
     }
 

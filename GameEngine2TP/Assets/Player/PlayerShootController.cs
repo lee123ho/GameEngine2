@@ -24,21 +24,32 @@ public class PlayerShootController : MonoBehaviour
         if (_timer <= _player.Stat.AttackRate) return; // Shoot Rate 타이머가 안되었을 때.
 
         if (!Input.GetMouseButton(0)) return; // 마우스 클릭 여부 확인.
-        if (_player.ammoCount <= 0) return; 
+        if (_player.ammoCount <= 0 && _player.LastGun != "handgun(clone)") return; 
 
         var bulletGameObject = ObjectPoolManager.Instance.Spawn("playerbullet");
         bulletGameObject.SetActive(true);
         bulletGameObject.transform.position = transform.GetChild(1).position;
 
         var bullet = bulletGameObject.GetComponent<playerBullet>();
-        if (!(bullet is null) && Physics.Raycast(_cam.ScreenPointToRay(Input.mousePosition), out var raycastHit, groundLayer))
+        if (!(bullet is null))
         {
-            var dir = raycastHit.point - transform.GetChild(1).position;
-            var normalizedDir = new Vector3(dir.x, 0, dir.z).normalized;
+            if(_player.LastGun == "shotgun(clone)")
+            {
+                bullet.Shoot(_player.transform.forward, _player.Stat.ShootSpeed, _player.Stat.AttackPower);
+                _player.ammoCount -= 5f;
+            }
+            else if (_player.LastGun == "riflegun(clone)")
+            {
+                bullet.Shoot(_player.transform.forward, _player.Stat.ShootSpeed, _player.Stat.AttackPower);
 
-            bullet.Shoot(normalizedDir, _player.Stat.ShootSpeed, _player.Stat.AttackPower);
+                _player.ammoCount--;
+            }
+            else if (_player.LastGun == "handgun(clone)")
+            {
+                bullet.Shoot(_player.transform.forward, _player.Stat.ShootSpeed, _player.Stat.AttackPower);
+            }
 
-            _player.ammoCount--;
+
 
             _timer = 0f; // timer reset
         }

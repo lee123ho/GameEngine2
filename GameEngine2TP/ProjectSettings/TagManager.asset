@@ -7,6 +7,10 @@ TagManager:
   - ObstacleSP
   - Enemy
   - gPoint
+  - exploObj
+  - s1_sp
+  - s2_sp
+  - s3_sp
   layers:
   - Default
   - TransparentFX
@@ -20,9 +24,9 @@ TagManager:
   - player
   - playerBullet
   - gun
-  - 
-  - 
-  - 
+  - Enemy
+  - enemyBullet
+  - pp
   - 
   - 
   - 

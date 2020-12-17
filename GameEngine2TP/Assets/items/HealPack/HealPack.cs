@@ -15,7 +15,8 @@ public class HealPack : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            _player.Stat.AddHp(5f);
+            var damagable = collision.gameObject.GetComponent<IDamageable>();
+            damagable.Damage(-5f);
             gameObject.SetActive(false);
         }
     }

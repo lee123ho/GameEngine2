@@ -19,6 +19,7 @@ public class enemyBullet : MonoBehaviour
     private void OnEnable()
     {
         _bulletLifeTime = StartCoroutine(BulletLiftTime());
+        _rigidbody.velocity = Vector3.zero;
     }
 
     private void OnDisable()
@@ -31,12 +32,12 @@ public class enemyBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("exploObj"))
         {
             var damagable = collision.gameObject.GetComponent<IDamageable>();
             damagable.Damage(_power);
-            gameObject.SetActive(false);
         }
+        gameObject.SetActive(false);
     }
 
     private IEnumerator BulletLiftTime()

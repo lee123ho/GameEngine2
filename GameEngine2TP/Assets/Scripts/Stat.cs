@@ -37,4 +37,14 @@ public struct Stat
     {
         _hp = Mathf.Clamp(_hp + hpAmount, 0, _maxHp);
     }
+
+    public void setRate(float attackRate)
+    {
+        _attackRate = attackRate;
+    }
+
+    public void setPower(float attackPower)
+    {
+        _attackPower = attackPower;
+    }
 }

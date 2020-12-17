@@ -711,13 +711,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1289730202934383164}
-  - component: {fileID: 1289730202934383167}
   - component: {fileID: 1289730202934383166}
   - component: {fileID: 7474124075348453457}
   - component: {fileID: -7856932666367783646}
+  - component: {fileID: 5597639004180660023}
   m_Layer: 0
   m_Name: Car
-  m_TagString: Untagged
+  m_TagString: exploObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -743,20 +743,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1289730202934383167
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289730202934383160}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!54 &1289730202934383166
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -765,7 +751,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289730202934383160}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -800,8 +786,27 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 1, z: 6.5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3, y: 2.66956, z: 6.5}
+  m_Center: {x: 0, y: 0.83478, z: 0}
+--- !u!114 &5597639004180660023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289730202934383160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6a77b91d469aa34592374dbc72d4ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _offset: {x: 0, y: 40}
+  exploRadius: 5
+  _stat:
+    _maxHp: 10
+    _shootSpeed: 0
+    _attackRate: 0
+    _attackPower: 0
 --- !u!1 &1289730203106628029
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KPU.Manager;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,9 @@ public class RangeEnemy : MonoBehaviour, IDamageable
     private Player _player;
     private EnemyState _state;
     private Coroutine _lifeRoutine;
+    private Canvas_UI _canvas;
+    private enemySlider_UI _enemyHealthBar;
+    private dropItem _drop;
 
     [SerializeField] private Stat _stat;
     [SerializeField] private float _attackRange;
@@ -25,8 +29,17 @@ public class RangeEnemy : MonoBehaviour, IDamageable
 
     private void OnEnable()
     {
+        _drop = GetComponent<dropItem>();
         _state = EnemyState.Chasing;
         _stat.AddHp(_stat.MaxHp);
+
+        var enemyHealthBarGameObject = ObjectPoolManager.Instance.Spawn("enemyslider");
+        _enemyHealthBar = enemyHealthBarGameObject.GetComponent<enemySlider_UI>();
+        _canvas = FindObjectOfType<Canvas_UI>();
+        _enemyHealthBar.Initialize(this, _canvas.GetComponent<Canvas>(), new Vector2(0f, 40f));
+        _enemyHealthBar.transform.parent = _canvas.transform;
+        _enemyHealthBar.gameObject.SetActive(true);
+
         _lifeRoutine = StartCoroutine(lifeRoutine());
     }
 
@@ -35,6 +48,15 @@ public class RangeEnemy : MonoBehaviour, IDamageable
         if (_lifeRoutine != null) StopCoroutine(_lifeRoutine);
 
         _lifeRoutine = null;
+    }
+
+    private void Update()
+    {
+        if (transform.position.y < -5)
+        {
+            transform.position = new Vector3(transform.position.x, 5f, transform.position.z);
+            GetComponent<NavMeshAgent>().enabled = true;
+        }
     }
 
     private IEnumerator lifeRoutine()
@@ -51,6 +73,13 @@ public class RangeEnemy : MonoBehaviour, IDamageable
 
     private void Death()
     {
+        _player.killZombie();
+        if (_drop.getItemName() != "none")
+        {
+            var dropitem = ObjectPoolManager.Instance.Spawn(_drop.getItemName());
+            dropitem.transform.position = transform.position + new Vector3(0f, 0.5f, 0f);
+        }
+        _enemyHealthBar.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 
